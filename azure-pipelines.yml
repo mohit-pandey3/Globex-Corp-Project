@@ -1,0 +1,96 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- master
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool: server
+    steps: 
+      - task: ServiceNow-DevOps-Server-Job-Notification@1
+        inputs:
+          connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
+          Phase: 'STARTED'
+
+      
+     
+      - task: ServiceNow-DevOps-Server-Job-Notification@1
+        inputs:
+          connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
+          Phase: 'COMPLETED'
+
+- stage: Test
+  jobs:
+  - job: Test
+    pool: server
+    steps:
+    
+    
+      - task: ServiceNow-DevOps-Server-Job-Notification@1
+        inputs:
+          connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
+          Phase: 'STARTED'
+          
+      - task: ServiceNow-DevOps-Server-Change-Acceleration@1
+        inputs:
+          connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
+          UpstreamJob: 'Test'
+          changeRequestDetails: |
+            {
+                "setCloseCode" : true,
+                "attributes": {
+                  "requested_by": {
+                    "name": "Arramraju Sreevidya"
+                  },
+                  "start_date": "2021-01-05 08:00:00",
+                  "end_date": "2021-01-08 08:00:00",
+                  "short_description":"Azure SNOW test",
+                  "category":"DevOps"
+                }
+              }
+      
+      - task: ServiceNow-DevOps-Server-Job-Notification@1
+        inputs:
+          connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
+          Phase: 'COMPLETED'
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    pool: server
+    steps:
+      
+         
+      - task: ServiceNow-DevOps-Server-Job-Notification@1
+        inputs:
+          connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
+          Phase: 'STARTED'
+
+      
+      - task: ServiceNow-DevOps-Server-Change-Acceleration@1
+        inputs:
+          connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
+          UpstreamJob: 'Deploy'
+          changeRequestDetails: |
+            {
+                "setCloseCode" : true,
+                "attributes": {
+                  "requested_by": {
+                    "name": "Arramraju Sreevidya"
+                  },
+                  "start_date": "2021-01-05 08:00:00",
+                  "end_date": "2021-01-08 08:00:00",
+                  "short_description":"Azure SNOW deploy",
+                  "category":"DevOps"
+                }
+              }
+
+      - task: ServiceNow-DevOps-Server-Job-Notification@1
+        inputs:
+          connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
+          Phase: 'COMPLETED'      
+
