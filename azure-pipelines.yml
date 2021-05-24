@@ -36,23 +36,7 @@ stages:
           connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
           Phase: 'STARTED'
           
-      - task: ServiceNow-DevOps-Server-Change-Acceleration@1
-        inputs:
-          connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
-          UpstreamJob: 'Test'
-          changeRequestDetails: |
-            {
-                "setCloseCode" : true,
-                "attributes": {
-                  "requested_by": {
-                    "name": "Arramraju Sreevidya"
-                  },
-                  "start_date": "2021-01-05 08:00:00",
-                  "end_date": "2021-01-08 08:00:00",
-                  "short_description":"Azure SNOW test",
-                  "category":"DevOps"
-                }
-              }
+
       
       - task: ServiceNow-DevOps-Server-Job-Notification@1
         inputs:
@@ -70,7 +54,6 @@ stages:
           connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
           Phase: 'STARTED'
 
-      
       - task: ServiceNow-DevOps-Server-Change-Acceleration@1
         inputs:
           connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
@@ -80,15 +63,10 @@ stages:
                 "setCloseCode" : true,
                 "attributes": {
                   "requested_by": {
-                    "name": "Arramraju Sreevidya"
-                  },
-                  "start_date": "2021-01-05 08:00:00",
-                  "end_date": "2021-01-08 08:00:00",
-                  "short_description":"Azure SNOW deploy",
-                  "category":"DevOps"
+                    "name": "rajyavardhan singh"
+                  }
                 }
               }
-
       - task: ServiceNow-DevOps-Server-Job-Notification@1
         inputs:
           connectedServiceName: 'yashtechnologiespvtltddemo10-ServiceNow-Azure Devops-ServiceNow DevOps Service Connection'
